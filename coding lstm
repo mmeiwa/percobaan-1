@@ -1,0 +1,28 @@
+# Library
+library(ggplot2)
+library(demography)
+library(tidyverse)
+library(StMoMo)
+library(fds)
+library(Metrics)
+library(writexl)
+library(readr)
+library(openxlsx)
+library(readxl)
+library(tinytex)
+# install.packages("VGAM", type = "binary")
+
+setwd("C:")
+
+data_lc <- read.xlsx("C:/lc_table_5023.xlsx")
+head(data_lc)
+
+mxtnya <- data_lc %>%
+  dplyr::select(Year, Age, blm.log) %>%
+  tidyr::pivot_wider(names_from = Year, values_from = blm.log) %>%
+  arrange(Age)
+
+etrnya <- data_lc %>%
+  dplyr::select(Year, Age, ETR) %>%
+  tidyr::pivot_wider(names_from = Year, values_from = ETR) %>%
+  arrange(Age)
